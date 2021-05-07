@@ -19,11 +19,11 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # The following are set from setup.py when building using the distutils 
 # custom command 'build_sphinx'
-#
-#project = 'Rubrik Polaris SDK for Python'
-#release = '2021.01.08'
-#author = 'Rubrik Inc'
-#copyright = '{}, {}'.format(datetime.datetime.now().year, author)
+
+# project = 'Rubrik Polaris SDK for Python'
+# release = '2021.01.08'
+# author = 'Rubrik Inc'
+# copyright = '{}, {}'.format(datetime.datetime.now().year, author)
 
 
 # -- General configuration ---------------------------------------------------
@@ -34,11 +34,11 @@ master_doc = 'index'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc', 
-    'sphinx.ext.autosummary', 
-    'sphinx.ext.coverage', 
-    'sphinx.ext.napoleon', 
-    'myst_parser', 
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.coverage',
+    'sphinx.ext.napoleon',
+    'myst_parser',
     'sphinx_copybutton'
 ]
 
@@ -72,5 +72,5 @@ html_style = 'rubrik.css'
 
 html_theme_options = {
     'navigation_with_keys': True,
-    #'announcement': '<em>This is a BETA version!</em>'
+    # 'announcement': '<em>This is a BETA version!</em>'
 }

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from datetime import datetime
 from glob import glob
+from os import path
 
 import setuptools
 
@@ -13,7 +14,6 @@ copyright = '{}, {}'.format(datetime.now().year, author)
 
 
 # read the contents of your README file
-from os import path
 this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
@@ -50,7 +50,7 @@ setuptools.setup(
         'httplib2 <1dev, >=0.15.0'
     ],
     include_package_data=True,
-    data_files = [
+    data_files=[
         ('rubrik_polaris/graphql', glob('rubrik_polaris/lib/common/graphql/*'))
     ],
     tests_require=[
