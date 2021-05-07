@@ -41,8 +41,10 @@ pipeline {
             }
         }
         stage('Coverage') {
-            sh 'pip3.8 install pytest-cov'
-            sh 'pytest -v --cov'
+            steps {
+                sh 'pip3.8 install pytest-cov'
+                sh 'pytest -v --cov'
+            }
         }
     }
     post {
