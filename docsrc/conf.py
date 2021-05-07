@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-# The following are set from setup.py when building using the distutils 
+# The following are set from setup.py when building using the distutils
 # custom command 'build_sphinx'
 
 # project = 'Rubrik Polaris SDK for Python'

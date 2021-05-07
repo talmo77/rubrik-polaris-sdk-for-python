@@ -88,15 +88,15 @@ class PolarisClient:
                 'Accept': 'application/json',
                 'Authorization': 'Bearer ' + self._access_token
             }
-            
+
             # Get graphql content
             (self._graphql_query_map) = _build_graphql_maps(self)
 
-        except RequestException as err:
+        except RequestException:
             raise
-        except OSError as os_err:
+        except OSError:
             raise
-        except Exception as e:
+        except Exception:
             raise
 
     @staticmethod
