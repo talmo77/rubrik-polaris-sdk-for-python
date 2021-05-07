@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        state('Lint') {
+        stage('Lint') {
             steps {
                 sh 'sudo pip3.8 install flake8'
                 sh 'flake8 --statistics'
