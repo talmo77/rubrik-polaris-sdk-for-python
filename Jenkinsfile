@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        state('Lint') {
+            steps {
+                sh 'sudo pip3.8 install flake8'
+                sh 'flake8 --statistics'
+            }
+        }
         stage('Generate Docs') {
             steps {
                 sh 'chmod -R 755 .'
@@ -33,6 +39,10 @@ pipeline {
                     sh 'printenv'
                 }
             }
+        }
+        stage('Coverage') {
+            sh 'pip3.8 install pytest-cov'
+            sh 'pytest -v --cov'
         }
     }
     post {
