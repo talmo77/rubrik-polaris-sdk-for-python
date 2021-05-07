@@ -4,7 +4,7 @@ pipeline {
         stage('Lint') {
             steps {
                 sh 'sudo pip3.8 install flake8'
-                sh 'flake8 --statistics'
+                sh 'python3.8 -m flake8 --statistics'
             }
         }
         stage('Generate Docs') {
