@@ -4,7 +4,7 @@ pipeline {
         stage('Lint') {
             steps {
                 sh 'sudo pip3.8 install flake8'
-                sh '/usr/local/bin/python3.8 -m flake8 --max-line-length 120 --statistics'
+                sh '/usr/local/bin/python3.8 -m flake8 --ignore E501 --statistics'
             }
         }
         stage('Generate Docs') {

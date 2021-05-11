@@ -40,7 +40,6 @@ def get_sla_domains(self, sla_domain_name=""):
         >>> client = PolarisClient()
         >>> sla_domains = client.get_sla_domains()
     """
-    from rubrik_polaris.exceptions import RequestException
 
     try:
         query_name = "core_sla_list"
@@ -79,7 +78,7 @@ def submit_on_demand(self, object_ids, sla_id, wait=False):
         >>> sla_domain_id = client.get_sla_domains('Gold')[0]['id']
         >>> client.submit_on_demand(object_ids, sla_domain_id, wait=True)
     """
-    from rubrik_polaris.exceptions import RequestException
+
     try:
         mutation_name = "core_snappable_on_demand"
         variables = {
@@ -97,7 +96,7 @@ def submit_on_demand(self, object_ids, sla_id, wait=False):
         try:
             if wait:
                 results = self._monitor_task(response['taskchainUuids'])
-        except Exception as e:
+        except Exception:
             pass
 
         return results
@@ -115,19 +114,18 @@ def submit_assign_sla(self, object_ids=[], sla_id=None, apply_to_existing_snapsh
         apply_to_existing_snapshots (bool): Apply retention policy to pre-existing snapshots
         existing_snapshot_retention (str): Snapshot handling on doNotProtect RETAIN_SNAPSHOTS/KEEP_FOREVER/EXPIRE_IMMEDIATELY
         global_sla_assign_type (str): ...
-    
+
     Returns:
         list: List of objects assigned the SLA
 
     Raises:
         RequestException: If the query to Polaris returned an error
-    
+
     Examples:
         >>> object_ids = client.get_object_ids_gce(region='us-west-1')
         >>> sla_domain_id = client.get_sla_domains('Gold')[0]['id']
         >>> client.submit_assign_sla(object_ids, sla_domain_id)
     """
-    from rubrik_polaris.exceptions import RequestException
 
     try:
         mutation_name = "core_sla_assign"
@@ -156,7 +154,6 @@ def get_task_status(self, task_chain_id):
     Raises:
         RequestException: If the query to Polaris returned an error
     """
-    from rubrik_polaris.exceptions import RequestException
 
     try:
         query_name = "core_taskchain_status"
@@ -165,7 +162,7 @@ def get_task_status(self, task_chain_id):
         }
         try:
             response = self._query(query_name, variables)
-        except Exception as e:
+        except Exception:
             return "FAILED"
         return response['taskchain']
     except Exception:
@@ -192,7 +189,7 @@ def get_snapshots(self, snappable_id=None, recovery_point=None):
     Args:
         snappable_id (str): Object UUID
         recovery_point (str): Optional datetime of snapshot to return, or 'latest', or not defined to return all
-        
+
     Returns:
         dict: A dictionary of snapshots or a single snapshot if 'latest' was passed as `recovery_point`. If no snapshots are found, an empty dict is returned.
 
@@ -239,7 +236,7 @@ def get_snapshots(self, snappable_id=None, recovery_point=None):
         raise
 
 
-def get_event_series_list(self, object_type=[], status=[], activity_type=[], severity=[], cluster_ids=[], start_time=None, end_time = None):
+def get_event_series_list(self, object_type=[], status=[], activity_type=[], severity=[], cluster_ids=[], start_time=None, end_time=None):
     """Retrieve Events from Polaris
 
     Args:

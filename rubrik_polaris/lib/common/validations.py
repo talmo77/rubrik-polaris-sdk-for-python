@@ -23,7 +23,7 @@ from rubrik_polaris.exceptions import ValidationException
 
 def _validate(self, **kwargs):
     for validation in kwargs:
-        globals()[validation+'_validation'](self, test_variable=kwargs[validation])
+        globals()[validation + '_validation'](self, test_variable=kwargs[validation])
 
 
 def mutation_name_validation(self, test_variable=None):
@@ -70,7 +70,7 @@ def snapshot_id_validation(self, test_variable=None):
             raise ValidationException("snapshot_id has been deleted from the source : {}".format(test_variable))
         if self.snapshot_details['isExpired']:
             raise ValidationException("snapshot_id is expired : {}".format(test_variable))
-    except Exception as e:
+    except Exception:
         raise ValidationException("not a valid snapshot_id : {}".format(test_variable))
     self.snapshot_id = test_variable
 

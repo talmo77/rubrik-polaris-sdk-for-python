@@ -64,7 +64,7 @@ def _monitor_job(job):
         task['elapsed'] = timer() - start
         return task
 
-    except Exception as err:
+    except Exception:
         raise PolarisException("Failed to get status of task {}".format(task['taskchainUuid']))
 
 

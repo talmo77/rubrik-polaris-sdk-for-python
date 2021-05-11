@@ -221,7 +221,7 @@ def get_compute_vsphere(self):
         raise
 
 
-def _submit_compute_restore(self, snapshot_id=None, mutation_name=None,  should_power_on=True, should_restore_tags=True, **kwargs):
+def _submit_compute_restore(self, snapshot_id=None, mutation_name=None, should_power_on=True, should_restore_tags=True, **kwargs):
     """Submits a Restore of a compute instance
 
     Arguments:
@@ -265,7 +265,7 @@ def submit_compute_restore_ec2(self, snapshot_id, **kwargs):
         should_power_on (bool): Defaults to `False`
         should_restore_tags (bool): Defaults to `False`
         wait (bool): Return once complete Defaults to `False`
-    
+
     Returns:
         dict -- List of errors if any occurred during the restore
     """
@@ -375,7 +375,6 @@ def submit_compute_export_ec2(self, snapshot_id=None, aws_account_number=None, a
     Returns:
         dict -- List of errors if any occurred during the export
     """
-    from rubrik_polaris.exceptions import ValidationException
 
     mutation_name = 'compute_export_ec2'
     self._validate(

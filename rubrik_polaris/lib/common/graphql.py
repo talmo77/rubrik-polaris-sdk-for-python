@@ -50,7 +50,7 @@ def _build_graphql_maps(self):
             graphql_details[query_name] = self._get_details_from_graphql_query(graphql_file)
             graphql_details[query_name]['query_text'] = """{}""".format(graphql_file)
 
-        except OSError as e:
+        except OSError:
             raise  # TODO: Should we bail immediately or go on to the next file?
 
     return graphql_details
@@ -85,10 +85,10 @@ def _get_details_from_graphql_query(self, graphql_query_text):
                     o[var_name]['type'] = o[var_name]['type'].replace("!", "")
                 else:
                     o[var_name]['required'] = False
-        except:  # Handle non-variable queries
+        except Exception:  # Handle non-variable queries
             o['gql_name'] = re.sub(r"[\{|\}]", "", re.search(r'\{(.*)\}', re.sub(r"[\n\t\s]*", "", graphql_query_text)).group(0))
         return o
-    except:
+    except Exception:
         print("Unexpected error:", sys.exc_info()[0])
         print(graphql_query_text)
         raise

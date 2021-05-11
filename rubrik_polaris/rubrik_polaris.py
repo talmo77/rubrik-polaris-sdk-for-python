@@ -42,15 +42,16 @@ class PolarisClient:
     # Private
     from .lib.common.connection import _query, _get_access_token
     from .lib.common.validations import _validate
-    from .lib.compute import _submit_compute_restore, _get_compute_object_ids, _get_aws_region_vpcs, _get_aws_region_kmskeys, \
-        _get_aws_region_sshkeypairs, _submit_compute_export
+    from .lib.compute import _submit_compute_restore, _get_compute_object_ids, _get_aws_region_vpcs, \
+        _get_aws_region_kmskeys, _get_aws_region_sshkeypairs, _submit_compute_export
     from .lib.common.monitor import _monitor_job, _monitor_threader, _monitor_task
     from .lib.common.graphql import _dump_nodes, _get_details_from_graphql_query
     from .lib.common.core import _get_snapshot
-    from .lib.accounts import _invoke_account_delete_aws, _invoke_aws_stack, _commit_account_delete_aws, _update_account_aws, \
-        _destroy_aws_stack, _disable_account_aws, _get_aws_profiles, _add_account_aws, _delete_account_aws, \
-        _update_account_aws_initiate, _get_account_map_aws, _get_gcp_native_project, _delete_account_gcp_project, \
-        _disable_account_gcp_project, _get_account_gcp_project, _get_account_gcp_permissions_cnp, _get_account_gcp_project_uuid_by_string
+    from .lib.accounts import _invoke_account_delete_aws, _invoke_aws_stack, _commit_account_delete_aws, \
+        _update_account_aws, _destroy_aws_stack, _disable_account_aws, _get_aws_profiles, _add_account_aws, \
+        _delete_account_aws, _update_account_aws_initiate, _get_account_map_aws, _get_gcp_native_project, \
+        _delete_account_gcp_project, _disable_account_gcp_project, _get_account_gcp_project, \
+        _get_account_gcp_permissions_cnp, _get_account_gcp_project_uuid_by_string
 
     def __init__(self, _domain=None, _username=None, _password=None, **kwargs):
         from .lib.common.graphql import _build_graphql_maps
@@ -63,7 +64,10 @@ class PolarisClient:
         self._password = self._get_cred('rubrik_polaris_password', _password)
 
         if not (self._domain and self._username and self._password):
-            raise Exception('Required credentials are missing! Please pass in username, password and domain, directly or through the OS environment.')
+            raise Exception(
+                "Required credentials are missing!"
+                "Please pass in username, password and domain, directly or through the OS environment."
+            )
 
         # Set base variables
         self._kwargs = kwargs

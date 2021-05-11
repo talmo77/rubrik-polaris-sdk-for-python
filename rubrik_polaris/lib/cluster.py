@@ -44,15 +44,16 @@ def get_cdm_cluster_location(self, cluster_id):
         }
         query = self._query(query_name, variables)
         if query['nodes']:
-            if query['nodes'][0]['geoLocation'] != None:
+            if query['nodes'][0]['geoLocation'] is not None:
                 return query['nodes'][0]['geoLocation']['address']
             else:
-                return "No Location Configured" 
+                return 'No Location Configured'
         else:
             raise Exception("A CDM Cluster with an ID of {} was not found.".format(cluster_id))
-            
+
     except Exception:
         raise
+
 
 def get_cdm_cluster_connection_status(self, cluster_id):
     """Retrieves the Polaris connection status for a CDM Cluster
@@ -76,6 +77,6 @@ def get_cdm_cluster_connection_status(self, cluster_id):
             return query['nodes'][0]['state']['connectedState']
         else:
             raise Exception("A CDM Cluster with an ID of {} was not found.".format(cluster_id))
-            
+
     except Exception:
         raise

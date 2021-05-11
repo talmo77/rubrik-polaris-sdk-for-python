@@ -19,7 +19,7 @@
 #  DEALINGS IN THE SOFTWARE.
 
 
-""" 
+"""
 Collection of methods that control connection with Polaris.
 """
 
@@ -34,11 +34,8 @@ def _query(self, query_name=None, variables=None, timeout=60):
         query = re.sub("RubrikPolarisSDKRequest", operation_name, self._graphql_query_map[query_name]['query_text'])
         gql_query_name = self._graphql_query_map[query_name]['gql_name']
         start = True
-        while start or \
-                (api_response['data'][gql_query_name]
-                 and not isinstance(api_response['data'][gql_query_name], bool)
-                 and 'pageInfo' in api_response['data'][gql_query_name]
-                 and api_response['data'][gql_query_name]['pageInfo']['hasNextPage']):
+        api_response = None
+        while start or (api_response and api_response['data'][gql_query_name] and not isinstance(api_response['data'][gql_query_name], bool) and 'pageInfo' in api_response['data'][gql_query_name] and api_response['data'][gql_query_name]['pageInfo']['hasNextPage']):
             if not start:
                 variables['after'] = api_response['data'][gql_query_name]['pageInfo']['endCursor']
             api_request = requests.post(
@@ -92,7 +89,7 @@ def _get_access_token(self):
             'Accept': 'application/json, text/plain'
         }
         request = requests.post(session_url, json=payload, headers=headers, verify=False)
-    
+
         del payload
 
         response_json = request.json()
@@ -105,5 +102,5 @@ def _get_access_token(self):
         raise RequestException(request_err)
     except ValueError as value_err:
         raise RequestException(value_err)
-    except Exception as err:
+    except Exception:
         raise
