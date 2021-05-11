@@ -1,0 +1,9 @@
+mutation RubrikPolarisSDKRequest($blueprintId: UUID!, $recoverySpecType: RecoverySpecTypeEnum!, $recoverySpecs: [AppBlueprintRecoverySpecCreateReqInputType!]!) {
+  createBlueprintRecoverySpec(blueprintId: $blueprintId, specType: $recoverySpecType, recoveryConfigs: $recoverySpecs) {
+    planType
+    childRecoverySpecs {
+      snappableFid
+      recoverySpecFid
+    }
+  }
+}

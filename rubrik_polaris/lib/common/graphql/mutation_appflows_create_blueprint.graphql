@@ -1,0 +1,7 @@
+mutation RubrikPolarisSDKRequest($name: String!, $sourceLocationId: String!, $targetLocationId: String!, $children: [AppBlueprintChildInput!]!, $status: BlueprintStatusEnum!) {
+    createBlueprint(children: $children, name: $name, sourceLocationId: $sourceLocationId, targetLocationId: $targetLocationId, status: $status) {
+      id
+      name
+      status
+    }
+}
