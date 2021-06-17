@@ -1,0 +1,7 @@
+query RubrikPolarisSDKRequest($filter: ClusterTypeEnum!) {
+  connectedClusterList(clusterFilterArg: $filter) {
+	name
+	uuid
+	version
+        }
+      }
