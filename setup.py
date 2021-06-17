@@ -41,7 +41,6 @@ setuptools.setup(
         'pytz',
         'zulu',
         'boto3',
-        'botocore<1.21.0,>=1.20.9',
         'google-auth<2.0dev,>=1.21.1',
         'google-api-python-client',
         'oauth2client',
