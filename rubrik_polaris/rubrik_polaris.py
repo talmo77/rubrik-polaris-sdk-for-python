@@ -40,7 +40,7 @@ class PolarisClient:
     from .compute.vsphere import get_compute_vsphere, get_compute_object_ids_vsphere
     from .storage.ebs import get_storage_object_ids_ebs, get_storage_ebs
     from .common.graphql import get_enum_values
-    from .cluster import get_cdm_cluster_location, get_cdm_cluster_connection_status
+    from .cluster import get_cdm_cluster_location, get_cdm_cluster_connection_status, get_cdm_cluster_sla_list
     from .appflows import get_appflows_blueprints
 
     # Private

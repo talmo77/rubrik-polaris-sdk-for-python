@@ -1,0 +1,13 @@
+query RubrikPolarisSDKRequest($filter: [GlobalSlaFilterInput!]) {
+  globalSlaConnection(filter: $filter, showProtectedObjectCount: true) {
+    edges {
+      node {
+        name
+	... on ClusterSlaDomain {
+	id: fid
+	protectedObjectCount
+      }
+    }
+  }
+ }
+}

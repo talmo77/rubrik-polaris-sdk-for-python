@@ -79,3 +79,37 @@ def get_cdm_cluster_connection_status(self, cluster_id):
             
     except Exception:
         raise
+
+def get_cdm_cluster_sla_list(self, cluster_id, sla_name=""):
+    """Retrieve all SLA for CDM Cluster
+
+    Returns:
+        Dict: List of SLA for the cluster
+
+    Raises:
+        RequestException: If the query to Polaris returned an error
+    """
+
+    try:
+        query_name = "cdm_cluster_sla_list"
+        variables = {
+            "filter": [
+                {
+                    "field": "NAME",
+                    "text": sla_name
+                    
+                },
+            
+                {
+                "field": "CLUSTER_UUID",
+                "text": cluster_id
+                }
+                       ]
+            }
+        try:
+            response = self._query(query_name, variables)
+        except Exception as e:
+            return "Failed to retrieve connected clusters".format(cluster_id)
+        return response
+    except Exception:
+        raise
