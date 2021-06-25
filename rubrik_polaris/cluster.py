@@ -81,10 +81,10 @@ def get_cdm_cluster_connection_status(self, cluster_id):
         raise
 
 def get_cdm_cluster_sla_list(self, cluster_id, sla_name=""):
-    """Retrieve all SLA for CDM Cluster
+    """Retrieve SLA information from CDM Cluster
 
     Returns:
-        Dict: List of SLA for the cluster
+        Dict: List of SLA Domains for the cluster
 
     Raises:
         RequestException: If the query to Polaris returned an error
@@ -109,7 +109,60 @@ def get_cdm_cluster_sla_list(self, cluster_id, sla_name=""):
         try:
             response = self._query(query_name, variables)
         except Exception as e:
-            return "Failed to retrieve connected clusters".format(cluster_id)
+            return "Failed to retrieve SLA Domain information clusters".format(cluster_id)
+        return response
+    except Exception:
+        raise
+
+def get_cdm_cluster_capacity(self, cluster_id):
+    """Retrieve Capacity information for CDM Cluster
+
+    Returns:
+        Dict: List of SLA Domains for the cluster
+
+    Raises:
+        RequestException: If the query to Polaris returned an error
+    """
+
+    try:
+        query_name = "cdm_cluster_capacity"
+        variables = {
+            "filter": {
+                "id": cluster_id
+            }
+            }
+        try:
+            response = self._query(query_name,variables)
+        except Exception as e:
+            return e
+        return response
+    except Exception:
+        raise
+
+def get_cdm_cluster_capacitybysla(self, cluster_id, groupBy):
+    """Retrieve Capacity information for CDM Cluster
+
+    Returns:
+        Dict: List of SLA Domains for the cluster
+
+    Raises:
+        RequestException: If the query to Polaris returned an error
+    """
+
+    try:
+        query_name = "cdm_cluster_capacitybysla"
+        variables = {
+	        "groupBy": groupBy,
+            "filter": {
+		        "cluster": {
+                "id": cluster_id
+			}
+            }
+            }
+        try:
+            response = self._query(query_name, variables)
+        except Exception as e:
+            return e
         return response
     except Exception:
         raise

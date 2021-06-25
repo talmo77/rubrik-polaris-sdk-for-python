@@ -1,0 +1,17 @@
+query RubrikPolarisSDKRequest($filter: ClusterFilterInput) {
+  clusterConnection(filter: $filter) {
+    nodes {
+      id
+      snapshotCount
+      metric {
+        ingestedSnapshotStorage
+        usedCapacity
+        liveMountCapacity
+        miscellaneousCapacity
+        physicalSnapshotStorage
+        snapshotCapacity
+        totalCapacity
+      }
+    }
+  }
+}

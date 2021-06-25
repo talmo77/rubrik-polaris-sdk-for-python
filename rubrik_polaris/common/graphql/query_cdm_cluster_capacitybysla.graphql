@@ -1,0 +1,26 @@
+query RubrikPolarisSDKRequest($filter: SnappableGroupByFilterInput!, $groupBy: SnappableGroupByEnum!) {
+  snappableGroupByConnection(filter: $filter , groupBy: $groupBy) {
+    edges {
+      node {
+        groupByInfo {
+          ... on ClusterSlaDomain {
+            name
+          }
+          ... on ObjectType {
+            enumValue
+          }
+        }
+        snappableGroupBy(groupBy: $groupBy) { 
+        snappableConnection {
+	    aggregation {
+            logicalBytes
+            totalSnapshots
+            replicaStorage
+            archiveStorage
+          }
+        }
+        }
+      }
+    }
+  }
+}
