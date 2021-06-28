@@ -139,7 +139,7 @@ def get_cdm_cluster_capacity(self, cluster_id):
     except Exception:
         raise
 
-def get_cdm_cluster_capacitybysla(self, cluster_id, groupBy):
+def get_cdm_cluster_capacitybysla(self, cluster_id, groupBy, slaTimeRange):
     """Retrieve Capacity information for CDM Cluster
 
     Returns:
@@ -156,7 +156,8 @@ def get_cdm_cluster_capacitybysla(self, cluster_id, groupBy):
             "filter": {
 		        "cluster": {
                 "id": cluster_id
-			}
+			},
+            "slaTimeRange": slaTimeRange
             }
             }
         try:

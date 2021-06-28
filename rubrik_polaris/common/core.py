@@ -164,7 +164,7 @@ def get_polaris_version(self):
     except Exception:
         raise
         
-def get_connected_clusters(self, cluster_type=None):
+def get_connected_clusters(self):
     """Retrieve all connected CDM Clusters within Polaris
 
     Returns:
@@ -180,8 +180,11 @@ def get_connected_clusters(self, cluster_type=None):
             "filter": "OnPrem"
             }
         try:
-            response = self._query(query_name, variables)
+            response = self._query(query_name)
+            if response['nodes']:
+                return response['nodes']
         except Exception as e:
+            print(e)
             return "Failed to retrieve connected clusters"
         return response
     except Exception:
